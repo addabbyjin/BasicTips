@@ -1,0 +1,15 @@
+        int dividend = 25, divisor = 4;
+
+        int quotient = dividend / divisor;
+        int remainder = dividend % divisor;
+        //absolute value
+        Math.abs()
+        
+        最小公倍数 最大公约数
+        
+        // n 个元素的数组的输入
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+          for(int a_i = 0; a_i < n; a_i++){
+            a[a_i] = in.nextInt();
+        }
