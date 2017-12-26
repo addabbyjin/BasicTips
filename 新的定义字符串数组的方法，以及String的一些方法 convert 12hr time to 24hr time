@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String timeConversion(String time) {
+        // judge the entered string contains AM or PM，then convert
+        String[] timeArr;//the new time
+                if(time.contains("AM")){
+            time = time.replace("AM", "");
+            //this way can define a new array???
+            timeArr = time.split(":");
+            if(timeArr[0].equals("12")){
+                timeArr[0] = "00";
+            }
+            time = timeArr[0]+":"+timeArr[1]+":"+timeArr[2];
+        }
+        
+                else if(time.contains("PM")){
+            time = time.replace("PM", "");
+            timeArr = time.split(":");
+            if(!timeArr[0].equals("12")){
+                timeArr[0] = Integer.toString(Integer.parseInt(timeArr[0])+12);
+            }
+            time = timeArr[0]+":"+timeArr[1]+":"+timeArr[2];
+        }
+        
+        return time;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        String result = timeConversion(s);
+        System.out.println(result);
+    }
+}
