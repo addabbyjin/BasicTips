@@ -1,0 +1,204 @@
+Suppose you want to check a boolean. If true, do something. Else, do something else. You can write:
+
+if(condition==true){
+
+}
+else{   //else means this checks for the opposite of what you checked at if
+
+}
+instead of that, you can do it simply like:
+
+if(condition){  //this will check if condition is true 
+
+}
+else{ 
+
+}
+Inversely. If you were to do something if condition was false and do something else if condition was true. Then you would write:
+
+if(condition!=true){   //if(condition=false)
+
+}
+else{
+
+}
+But following the simple path. We do:
+
+if(!condition){  //it reads out as: if condition is not true. Which means if condition is false right?
+
+}
+else{}
+---------------------------------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class BetweenTwoSets {
+    
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int[] a = new int[n];
+        for(int a_i=0; a_i < n; a_i++){
+            a[a_i] = in.nextInt();
+        }
+        int lcm = findLCM(a);
+        
+        int finalCount = 0;
+        int[] b = new int[m];
+        for(int b_i=0; b_i < m; b_i++){
+            b[b_i] = in.nextInt();
+            
+        }
+        int gcf = findGCF(b);
+        for(int i = lcm, j =2; i<=gcf; i=lcm*j,j++){
+            if(gcf%i==0){ finalCount++;}
+        }
+        
+        System.out.println(finalCount);
+    }
+    static int findLCM(int arr[]){
+        int result = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            result = findLCM(result, arr[i]);
+        }
+        
+        return result;
+    }
+    static int findLCM(int a,int b){
+       int min,max,lcm=1,x;
+        //比较两个数
+        if(a>b){
+           max =  a;
+           min =  b;
+       }else{
+           max =  b;
+           min =  a;
+        }
+        
+        for(int i=1;i<max;i++){
+            //找出数组里的最大的那个数，算出最大的那个数的阶乘,找出公倍数
+            x = max*i;
+            if(x%min==0){
+                lcm = x;
+                break;
+            }
+        }
+        
+      return lcm;
+    }
+    
+    static int findGCF(int arr[]){
+        int result = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            result = findGCF(result, arr[i]);
+        }
+        return result;
+    }
+   //为什么要写两个一样名字的函数？？？
+    //计算一共有这样的X是第一个数组的所有元素的公倍数，和第二个数组的所有元素的公因数的X有多少个
+    static int findGCF(int a,int b) {
+        List<Integer> numberList = new ArrayList<Integer>();
+        numberList.add(a);
+        numberList.add(b);
+        Integer maxNumber = Collections.max(numberList);
+       // int minNumber = Collections.max(numberList);
+        int gcf = 1;
+        for (int i = maxNumber; i > 1; i--) { // taking max number for iterating loop
+            boolean check = false;
+            for (int j = 0; j < numberList.size(); j++) {
+                if (numberList.get(j) % i == 0) {//找出在第二个数组里，它是不是公因数
+                    check = true;
+                } else {
+                    check = false;
+                    break;
+                }
+            }
+            if (check) {//if(condition)， if true will continue
+                for (int j = 0; j < numberList.size(); j++) {
+                    numberList.set(j, numberList.get(j) / i);
+                }
+                gcf *= i;
+                maxNumber = Collections.max(numberList);
+            }
+        }
+        
+        return gcf;
+    }
+}
+-------------------------------------------------------------------------------
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import java.lang.*;
+
+public class Solution {
+public static void main(String[] args){
+//Can be solved by finding lcm(a) and gcf(b) instead
+Scanner in = new Scanner(System.in);
+int n = in.nextInt();
+int[] a = new int[n];
+
+n = in.nextInt();
+int[] b = new int[n];
+
+int min = Integer.MAX_VALUE;
+int max = Integer.MIN_VALUE;
+
+for(int i = 0; i < a.length; i++){
+a[i] = in.nextInt();
+if(a[i] > max){
+max = a[i];
+}
+}
+
+for(int i = 0; i < b.length; i++){
+b[i] = in.nextInt();
+if(b[i] < min){
+min = b[i];
+}
+}
+
+if(min > max){
+int temp = min;
+min = max;
+max = temp;
+}
+
+int count = 0;
+for(int i = min; i <= max; i++){
+if(isFactor(i, a) && isFactor(i, b)){
+count++;
+}
+}
+
+System.out.println(count);
+}
+
+public static boolean isFactor(int x, int[] a){
+for(int i : a){
+if((x % i) != 0){
+return false;
+}
+}
+return true;
+}
+
+public static boolean isFactorint x, int[] a){
+for(int i : a){
+if((i % x) != 0){
+return false;
+}
+}
+return true;
+}
+}
+
+
+
