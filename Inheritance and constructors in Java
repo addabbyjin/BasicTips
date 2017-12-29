@@ -1,0 +1,65 @@
+super key word is used for?
+class Student extends Person{
+	private int[] testScores;
+
+    /*	
+    *   Class Constructor
+    *   
+    *   @param firstName - A string denoting the Person's first name.
+    *   @param lastName - A string denoting the Person's last name.
+    *   @param id - An integer denoting the Person's ID number.
+    *   @param scores - An array of integers denoting the Person's test scores.
+    */
+    // Write your constructor here
+Student(String firstName, String lastName, int identification, int[] allScores){
+    /*worng
+    super(firstName);
+    super(lastName);
+    super(identification);
+    */
+    super(firstName,lastName,identification );
+    this.testScores=allScores;//-----------------???????????????????????????????????????????????????????????
+}
+
+
+    /*	
+    *   Method Name: calculate
+    *   @return A character denoting the grade.
+    */
+    // Write your method here
+    
+    
+    public String calculate(){     //int[] scores, 我们本来就是在student 类里面，不需要再在calculate里面传入参数了
+    int sum=0;
+        String output;
+       /* wrong I  cannt find n. for(int i=0;i<n;i++)*/
+        for(int i : this.testScores)
+    {
+    sum=sum+i;
+    }
+     double   ava=sum/testScores.length;
+      if(ava<40){
+      output="T";    
+  } else{
+      if(40<=ava&&ava<55){// WRONG  40<=testScores<55
+        output="D";  
+      }else{
+          if(55<=ava&&ava<70){
+              output="P"; 
+          }else{
+              if(70<=ava&&ava<80){
+                   output="A";
+              }else{
+                  if(80<=ava&&ava<90){
+                   output="E";   
+                  }else{
+                    
+                          output="O"; 
+                  }
+              }
+          }
+      }
+  }    
+        return output;
+                                        }
+}
