@@ -1,0 +1,80 @@
+/*
+problem
+Problem: Given a square matrix of size N×N, calculate the absolute difference between the sums of its diagonals.
+This question was asked in HackerRank. We will see a simple and elegent solution for this problem in Java.
+
+Input format:
+The first line contains a single integer, N. The next N lines denote the matrix’s rows, with each line containing N space-separated integers describing the columns.
+
+Output format:
+Print the absolute difference between the two sums of the matrix’s diagonals as a single integer.
+
+Sample input:
+3
+11 2 4
+4 5 6
+10 8 -12
+
+Sample output:
+15
+*/
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+/*
+public static void main(String[] args) {
+ 
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int array[][] = new int[n][n];
+        int d1 = 0, d2 = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                array[i][j] = in.nextInt();
+                if (i == j) {
+                    d1 = d1 + array[i][j];
+                }
+                if (i + j == n - 1) {
+                    d2 = d2 + array[i][j];
+                }
+            }
+        }
+        System.out.println(Math.abs(d1 - d2));
+    }
+*/
+public class Solution {
+
+    static int diagonalDifference(int[][] a) {
+        // Complete this function
+        int sum1=0,sum2=0,value;
+        int n=a.length;
+        
+        int index=0;
+            while(index < n) {
+            sum1 += a[index][index];
+            sum2 += a[index][n-1-index];
+            index++;
+        }
+       
+        value=Math.abs(sum1-sum2);
+        
+        return value;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[][] a = new int[n][n];
+        for(int a_i = 0; a_i < n; a_i++){
+            for(int a_j = 0; a_j < n; a_j++){
+                a[a_i][a_j] = in.nextInt();
+            }
+        }
+        int result = diagonalDifference(a);
+        System.out.println(result);
+        in.close();
+    }
+}
