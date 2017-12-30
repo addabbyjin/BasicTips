@@ -1,0 +1,8 @@
+question:If I have a datatype of decimal(6, 2) what would a sample data be?
+
+I'm using ASP.NET MVC if that makes a difference. Thanks
+
+answer:Assuming you mean that the database type is decimal(6, 2), then this means that your column is set up to store 6 places (scale), with 2 to the right of the decimal (precision). You should treat this as a decimal CLR type.
+
+A sample would be 1234.56.
+
